@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeMatch Pro - AI Resume Analyzer</title>
+
+    <!-- Link External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>ResumeMatch Pro</h1>
+        <p class="subtitle">AI-powered Resume & Job Description Matching Tool</p>
+
+        <form method="POST" enctype="multipart/form-data" action="/">
+            <div>
+                <label>Upload Your Resume (PDF or DOCX):</label>
+                <input type="file" name="resume_file" accept=".pdf,.docx" required>
+            </div>
+
+            <div>
+                <label>Paste Job Description:</label>
+                <textarea name="job_description" rows="8" placeholder="Paste the job description here..." required></textarea>
+            </div>
+
+            <button type="submit">Analyze Resume Match</button>
+        </form>
+
+        {% if results %}
+        <div class="results">
+            <h2>Analysis Result</h2>
+
+            <p>Matching Score:</p>
+            <div class="score">{{ results.score }}</div>
+
+            <h3>Skill Gaps & Suggested Improvements:</h3>
+            <div style="white-space: pre-wrap;">
+                {{ results.suggestions }}
+            </div>
+
+            <hr>
+            <p>This analysis was generated using AI.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>© 2025 ResumeMatch Pro • AI Resume Analyzer</footer>
+
+</body>
+</html>
